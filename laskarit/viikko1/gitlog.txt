@@ -1,0 +1,97 @@
+commit 4e9c117fe3ad3a7cef29ed4f19c6a6b3c14bd7bb
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:26:35 2018 +0200
+
+    fileointia
+
+ tiedostoja/file1  | 0
+ tiedostoja/file2  | 0
+ tiedostoja/file22 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bdedb8e20d797669c2d73ff4724e9a50aa02d777
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:25:47 2018 +0200
+
+    fileleikkeitä
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1351ae8242aa5b89a7732c150d73cc418209784c
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:23:46 2018 +0200
+
+    laastaroitu
+
+ eka.txt    | 4 +++-
+ kolmas.txt | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit df32d4a9883d82571cd22e8cba8708bc170c5ee0
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:22:14 2018 +0200
+
+    nimetty uudelleen
+
+ eka.txt      | 1 +
+ tiedosto.txt | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 501cdaad0a2304742259923d27753b0ecfd14c46
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:21:27 2018 +0200
+
+    ei enää toista
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit bfab2f5b089f59b17358b29440cca6c244ef15ca
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:20:45 2018 +0200
+
+    juttu
+
+ stuff/zot | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3b4f0b7649027768c3a63e4256c7dcfa5a6874ad
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:19:56 2018 +0200
+
+    muutoksia
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 0d9f4682e67322fa915e2bace021ebeb987eada9
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:19:17 2018 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6996444a923333a343df7ba72d03ee1c8b80662e
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:18:38 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 47c216aebab82359ff4001f4bcccc4678f8813d0
+Author: Melker Narikka <melker.narikka@helsinki.fi>
+Date:   Wed Mar 14 18:17:25 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
