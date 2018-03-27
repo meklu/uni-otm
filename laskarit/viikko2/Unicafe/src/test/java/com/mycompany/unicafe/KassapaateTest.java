@@ -193,4 +193,16 @@ public class KassapaateTest {
         paate.lataaRahaaKortille(kortti, 100);
         assertEquals(100100, paate.kassassaRahaa());
     }
+
+    @Test
+    public void kortilleEiLadataNegatiivista() {
+        paate.lataaRahaaKortille(kortti, -100);
+        assertEquals(1000, kortti.saldo());
+    }
+
+    @Test
+    public void kortinNegatiivinenLatausEiMeneKassaan() {
+        paate.lataaRahaaKortille(kortti, -100);
+        assertEquals(100000, paate.kassassaRahaa());
+    }
 }
