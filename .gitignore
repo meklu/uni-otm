@@ -3,3 +3,24 @@
 /laskarit/viikko2/Unicafe/target/
 /laskarit/viikko2/Unicafe/nbactions.xml
 /laskarit/viikko2/Unicafe/nbproject/
+
+/app/target/
+
+## Via gitignore.io:
+# User-specific stuff:
+/app/.idea/**/workspace.xml
+/app/.idea/**/tasks.xml
+/app/.idea/dictionaries
+
+# Sensitive or high-churn files:
+/app/.idea/**/dataSources/
+/app/.idea/**/dataSources.ids
+/app/.idea/**/dataSources.xml
+/app/.idea/**/dataSources.local.xml
+/app/.idea/**/sqlDataSources.xml
+/app/.idea/**/dynamic.xml
+/app/.idea/**/uiDesigner.xml
+
+# Gradle:
+/app/.idea/**/gradle.xml
+/app/.idea/**/libraries
