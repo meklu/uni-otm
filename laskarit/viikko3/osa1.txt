@@ -1,0 +1,11 @@
+[Pelilauta],
+[Pelinappula],
+[Noppa],
+[Pelaaja],
+[Ruutu|seuraava:Ruutu],
+[Peli]1->2[Noppa],
+[Peli]1->1[Pelilauta],
+[Peli]1->2..8[Pelaaja],
+[Pelilauta]1->40[Ruutu],
+[Pelaaja]1->1[Pelinappula],
+[Pelinappula]0..*->1[Ruutu]
