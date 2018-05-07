@@ -6,4 +6,5 @@ Pvm   | Aika  | Asia
 28.3. | 2h    | IntelliJ Idean kanssa kamppailua
 28.3. | 30m   | Alustava vaatimusmäärittely
 11.4. | 1h    | Alustava kirjautumisruudun mockup
-…     | 4h30m | *Yhteensä*
+7.5.  | 30m   | Tietokantariippuvuuden konfigurointi
+…     | 5h00m | *Yhteensä*
