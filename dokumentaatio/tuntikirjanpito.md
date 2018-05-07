@@ -7,4 +7,5 @@ Pvm   | Aika  | Asia
 28.3. | 30m   | Alustava vaatimusmäärittely
 11.4. | 1h    | Alustava kirjautumisruudun mockup
 7.5.  | 30m   | Tietokantariippuvuuden konfigurointi
-…     | 5h00m | *Yhteensä*
+7.5.  | 30m   | Tietokannan alustava suunnittelu
+…     | 5h30m | *Yhteensä*
