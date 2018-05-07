@@ -8,4 +8,5 @@ Pvm   | Aika  | Asia
 11.4. | 1h    | Alustava kirjautumisruudun mockup
 7.5.  | 30m   | Tietokantariippuvuuden konfigurointi
 7.5.  | 30m   | Tietokannan alustava suunnittelu
-…     | 5h30m | *Yhteensä*
+7.5.  | 10m   | Tietokantaluokan aloittaminen
+…     | 5h40m | *Yhteensä*
