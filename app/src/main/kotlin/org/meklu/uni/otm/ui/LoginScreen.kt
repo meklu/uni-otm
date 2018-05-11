@@ -1,4 +1,4 @@
-package org.meklu.uni.otm
+package org.meklu.uni.otm.ui
 
 import javafx.scene.Scene
 import javafx.scene.layout.VBox

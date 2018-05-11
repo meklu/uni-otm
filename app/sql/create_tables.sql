@@ -5,13 +5,13 @@
 -- * include a password field
 -- * include a user type field
 CREATE TABLE IF NOT EXISTS users (
-	id INTEGER PRIMARY KEY,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	username TEXT UNIQUE NOT NULL,
 	created TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS snippets (
-	id INTEGER PRIMARY KEY,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	owner_id INTEGER,
 	is_public INTEGER NOT NULL DEFAULT 0,
 	created TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS snippets (
 -- * include a tag type, e.g. language, problem domain, etc.
 -- * set up a trigger to remove unused tags?
 CREATE TABLE IF NOT EXISTS tags (
-	id INTEGER PRIMARY KEY,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	tag TEXT UNIQUE NOT NULL
 );
 

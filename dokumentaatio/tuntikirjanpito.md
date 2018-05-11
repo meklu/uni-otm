@@ -10,4 +10,5 @@ Pvm   | Aika  | Asia
 7.5.  | 30m   | Tietokannan alustava suunnittelu
 7.5.  | 10m   | Tietokantaluokan aloittaminen
 7.5.  | 30m   | Alustavia malliluokkia
-…     | 6h10m | *Yhteensä*
+11.5. | 3h    | Paljon tietokantatoiminnallisuutta
+…     | 9h10m | *Yhteensä*

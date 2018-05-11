@@ -2,8 +2,9 @@ package org.meklu.uni.otm
 
 import javafx.application.Application
 import javafx.stage.Stage
-
-import java.sql.*;
+import org.meklu.uni.otm.domain.Database
+import org.meklu.uni.otm.model.*
+import org.meklu.uni.otm.ui.LoginScreen
 
 class Main : Application() {
     override fun start(stage : Stage) {
@@ -15,13 +16,16 @@ class Main : Application() {
         @JvmStatic
         fun main(args : Array<String>) {
             // FIXME: remove these lines
-            val conn = DriverManager.getConnection("jdbc:sqlite:test.db")
-            val stmt = conn.prepareStatement("SELECT CURRENT_TIMESTAMP as ts")
-            val res = stmt.executeQuery();
-            while (res.next()) {
-                val date = res.getString("ts")
-                println(date)
-            }
+            val db = Database("test.db")
+            val u = User(db, 0, "melker")
+            println("u:")
+            println("\t${u.id}")
+            println("\t${u.username}")
+            u.save()
+            println("u:")
+            println("\t${u.id}")
+            println("\t${u.username}")
+
             launch(Main::class.java)
         }
     }
