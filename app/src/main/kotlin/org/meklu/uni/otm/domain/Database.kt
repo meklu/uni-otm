@@ -27,18 +27,39 @@ class Database {
      */
     fun getConn () = conn
 
+    /** Finds a row where field = value
+     *
+     * @param table The table to query
+     * @param field The field to check against
+     * @param value The value to compare the field to
+     * @return Possibly a ResultSet
+     */
     fun find(table : String, field : String, value : String): ResultSet? {
         val stmt = conn.prepareStatement("SELECT * FROM ${table} WHERE ${field} = ?")
         stmt.setString(1, value)
         return stmt.executeQuery()
     }
 
+
+    /** Finds a row where field matches the given SQL pattern
+     *
+     * @param table The table to query
+     * @param field The field to check against
+     * @param pattern The value to compare the field to
+     * @return Possibly a ResultSet
+     */
     fun findLike(table : String, field : String, pattern : String): ResultSet? {
         val stmt = conn.prepareStatement("SELECT * FROM ${table} WHERE ${field} LIKE ?")
         stmt.setString(1, pattern)
         return stmt.executeQuery()
     }
 
+    /** Saves a row
+     *
+     * @param table The table to insert into
+     * @param fields A list of pairs of (field, value)
+     * @return Whether we succeeded or not
+     */
     fun save(table : String, fields : List<Pair<String, String>>): Boolean {
         val frepl = fields.joinToString(separator = ",", transform = {"?"})
         val fnames = fields.joinToString(separator = ",", transform = { x -> x.first })
@@ -52,6 +73,12 @@ class Database {
         return stmt.updateCount > 0
     }
 
+    /** Saves a row but returns the inserted item's id as well
+     *
+     * @param table The table to insert into
+     * @param fields A list of pairs of (field, value)
+     * @return The id of the newly inserted row
+     */
     fun saveReturningId(table : String, fields : List<Pair<String, String>>) : Int {
         this.startTransaction()
         val ret = this.save(table, fields)
@@ -61,20 +88,30 @@ class Database {
         return id
     }
 
+    /** Starts a transaction
+     */
     fun startTransaction() {
         conn.autoCommit = false
     }
 
+    /** Commits a transaction
+     */
     fun commit() {
         conn.commit()
         conn.autoCommit = true
     }
 
+    /** Rolls back a transaction
+     */
     fun rollback() {
         conn.rollback()
         conn.autoCommit = true
     }
 
+    /** Gets the id of the last inserted row
+     *
+     * @return The id of the last inserted row
+     */
     fun lastId(table : String) : Int {
         val stmt = conn.prepareStatement("SELECT seq FROM sqlite_sequence WHERE name = ?")
         stmt.setString(1, table)
@@ -83,12 +120,25 @@ class Database {
         return res.getInt("seq")
     }
 
+    /** Deletes a row
+     *
+     * @param table The table to delete from
+     * @param field The field to delete by
+     * @param value The value to delete by
+     * @return Whether we succeeded
+     */
     fun delete(table : String, field : String, value : String) : Boolean {
         val l = ArrayList<Pair<String, String>>()
         l.plus(Pair(field, value))
         return this.delete(table, l)
     }
 
+    /** Deletes a row
+     *
+     * @param table The table to delete from
+     * @param whereFields The fields according to which the row is deleted as (key, value) pairs. These are ANDed.
+     * @return Whether we succeeded
+     */
     fun delete(table : String, whereFields : List<Pair<String, String>>) : Boolean {
         val frepl = whereFields.joinToString(separator = " AND ", transform = {x -> "${x.first} = ?"})
         val query = "DELETE FROM table WHERE $frepl"
