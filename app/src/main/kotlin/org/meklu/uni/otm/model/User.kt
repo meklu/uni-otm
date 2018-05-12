@@ -3,7 +3,7 @@ package org.meklu.uni.otm.model
 import org.meklu.uni.otm.domain.Database
 import java.sql.ResultSet
 
-class User : Model {
+class User : Model<User> {
     override fun tableName(): String = "users"
 
     val db : Database
@@ -32,19 +32,17 @@ class User : Model {
         return true
     }
 
-    override fun find(field: String, value: String): Model? {
+    override fun find(field: String, value: String): User? {
         val res = db.find(this.tableName(), field, value) ?: return null
         if (!res.next()) return null
         return this.fromResultSet(res)
     }
 
-    override fun findLike(field: String, pattern: String): List<Model> {
+    override fun findLike(field: String, pattern: String): List<User> {
         val ret = ArrayList<User>()
         val res = db.findLike(this.tableName(), field, pattern) ?: return ret
         while (res.next()) {
-            val id = res.getInt("id")
-            val username = res.getString("username")
-            ret.plus(this.fromResultSet(res))
+            ret.add(this.fromResultSet(res))
         }
         return ret
     }
@@ -53,7 +51,7 @@ class User : Model {
         return db.delete(this.tableName(), "id", id.toString())
     }
 
-    override fun fromResultSet(rs: ResultSet): Model {
+    override fun fromResultSet(rs: ResultSet): User {
         val id = rs.getInt("id")
         val username = rs.getString("username")
         return User(db, id, username)

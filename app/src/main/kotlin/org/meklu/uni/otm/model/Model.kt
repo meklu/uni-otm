@@ -2,7 +2,7 @@ package org.meklu.uni.otm.model
 
 import java.sql.ResultSet
 
-interface Model {
+interface Model<T : Model<T>> {
     /** @return The name of the database table for the Model */
     fun tableName() : String
     /** Saves a Model in the database */
@@ -11,14 +11,14 @@ interface Model {
     fun find(
         field : String,
         value : String
-    ) : Model?
+    ) : T?
     /** Fetches a Model by field, matching a pattern */
     fun findLike(
         field : String,
         pattern : String
-    ) : List<Model>
+    ) : List<T>
     /** Deletes a Model from the database */
     fun delete() : Boolean
     /** Returns a Model based on a DB result */
-    fun fromResultSet(rs : ResultSet) : Model
+    fun fromResultSet(rs : ResultSet) : T
 }

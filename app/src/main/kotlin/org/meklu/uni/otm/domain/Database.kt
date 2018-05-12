@@ -1,5 +1,7 @@
 package org.meklu.uni.otm.domain
 
+import java.io.File
+import java.io.InputStream
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
@@ -27,6 +29,62 @@ class Database {
      */
     fun getConn () = conn
 
+    /** Closes the connection
+     * @see java.sql.Connection
+     */
+    fun close() = conn.close()
+
+    /** Private utility function that reads a file as a string
+     *
+     * @param file The path to the file being read
+     * @return The file contents
+     */
+    private fun readFile(file : String) : String {
+        val stream: InputStream = File(file).inputStream()
+        return stream.bufferedReader().use { it.readText() }
+    }
+
+    /** A hacky private utility function that executes an SQL file
+     * that only contains DDL statements
+     *
+     * @param file The path to the executed file
+     */
+    private fun execFile(file : String) {
+        startTransaction()
+        val parts = readFile(file).split(";")
+        for (p in parts) {
+            val q = p.trim()
+            this.conn.createStatement().apply({
+                closeOnCompletion()
+                executeUpdate(q)
+            })
+        }
+        commit()
+    }
+
+    /** Drops all the tables in the database
+     *
+     * CAUTION: Removes everything!
+     */
+    fun dropTables() {
+        execFile("sql/drop_tables.sql")
+    }
+
+    /** Re-creates all the tables in the database, if necessary
+     */
+    fun createTables() {
+        execFile("sql/create_tables.sql")
+    }
+
+    /** Resets the database
+     *
+     * CAUTION: Drops all tables and re-creates them
+     */
+    fun reset() {
+        this.dropTables()
+        this.createTables()
+    }
+
     /** Finds a row where field = value
      *
      * @param table The table to query
@@ -39,7 +97,6 @@ class Database {
         stmt.setString(1, value)
         return stmt.executeQuery()
     }
-
 
     /** Finds a row where field matches the given SQL pattern
      *
@@ -67,7 +124,7 @@ class Database {
         val stmt : PreparedStatement = conn.prepareStatement(query)
         for (i in 0..fields.size - 1) {
             val off = 1
-            stmt.setString(off, fields[i].second)
+            stmt.setString(off + i, fields[i].second)
         }
         stmt.execute()
         return stmt.updateCount > 0
@@ -129,7 +186,7 @@ class Database {
      */
     fun delete(table : String, field : String, value : String) : Boolean {
         val l = ArrayList<Pair<String, String>>()
-        l.plus(Pair(field, value))
+        l.add(Pair(field, value))
         return this.delete(table, l)
     }
 
@@ -141,9 +198,9 @@ class Database {
      */
     fun delete(table : String, whereFields : List<Pair<String, String>>) : Boolean {
         val frepl = whereFields.joinToString(separator = " AND ", transform = {x -> "${x.first} = ?"})
-        val query = "DELETE FROM table WHERE $frepl"
+        val query = "DELETE FROM $table WHERE $frepl"
         val stmt = conn.prepareStatement(query)
-        for (i in 1..whereFields.size - 1) {
+        for (i in 1..whereFields.size) {
             val p = whereFields[i - 1]
             stmt.setString(i, p.second)
         }

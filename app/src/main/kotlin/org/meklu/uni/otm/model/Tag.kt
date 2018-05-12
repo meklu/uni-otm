@@ -3,7 +3,7 @@ package org.meklu.uni.otm.model
 import org.meklu.uni.otm.domain.Database
 import java.sql.ResultSet
 
-class Tag : Model {
+class Tag : Model<Tag> {
     override fun tableName(): String = "tags"
 
     val db : Database
@@ -22,9 +22,9 @@ class Tag : Model {
 
     override fun save(): Boolean {
         val fields = ArrayList<Pair<String, String>>()
-        fields.add(Pair("tag", tag))
+        fields.add(Pair("tag", this.tag))
         if (this.id > 0) {
-            fields.add(Pair("id", id.toString()))
+            fields.add(Pair("id", this.id.toString()))
         }
         val id = db.saveReturningId(this.tableName(), fields)
         if (id == -1) return false
@@ -32,17 +32,17 @@ class Tag : Model {
         return true
     }
 
-    override fun find(field: String, value: String): Model? {
+    override fun find(field: String, value: String): Tag? {
         val res = db.find(this.tableName(), field, value) ?: return null
         if (!res.next()) return null
         return this.fromResultSet(res)
     }
 
-    override fun findLike(field: String, pattern: String): List<Model> {
-        val ret = ArrayList<User>()
+    override fun findLike(field: String, pattern: String): List<Tag> {
+        val ret = ArrayList<Tag>()
         val res = db.findLike(this.tableName(), field, pattern) ?: return ret
         while (res.next()) {
-            ret.plus(this.fromResultSet(res))
+            ret.add(this.fromResultSet(res))
         }
         return ret
     }
@@ -51,7 +51,7 @@ class Tag : Model {
         return db.delete(this.tableName(), "id", id.toString())
     }
 
-    override fun fromResultSet(rs: ResultSet): Model {
+    override fun fromResultSet(rs: ResultSet): Tag {
         val id = rs.getInt("id")
         val tag = rs.getString("tag")
         return Tag(db, id, tag)

@@ -12,4 +12,5 @@ Pvm   | Aika  | Asia
 7.5.  | 30m   | Alustavia malliluokkia
 11.5. | 3h    | Paljon tietokantatoiminnallisuutta
 11.5. | 30m   | Dokumentaatioasiaa
-…     | 9h40m | *Yhteensä*
+12.5. | 3h30m | Testien ja tietokannan kanssa tappelua
+…     | 13h10m | *Yhteensä*

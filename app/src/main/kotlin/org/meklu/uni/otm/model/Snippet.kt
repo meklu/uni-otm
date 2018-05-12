@@ -3,7 +3,7 @@ package org.meklu.uni.otm.model
 import org.meklu.uni.otm.domain.Database
 import java.sql.ResultSet
 
-class Snippet : Model {
+class Snippet : Model<Snippet> {
     override fun tableName(): String = "snippets"
 
     val db : Database
@@ -40,17 +40,17 @@ class Snippet : Model {
         return true
     }
 
-    override fun find(field: String, value: String): Model? {
+    override fun find(field: String, value: String): Snippet? {
         val res = db.find(this.tableName(), field, value) ?: return null
         if (!res.next()) return null
         return this.fromResultSet(res)
     }
 
-    override fun findLike(field: String, pattern: String): List<Model> {
-        val ret = ArrayList<User>()
+    override fun findLike(field: String, pattern: String): List<Snippet> {
+        val ret = ArrayList<Snippet>()
         val res = db.findLike(this.tableName(), field, pattern) ?: return ret
         while (res.next()) {
-            ret.plus(this.fromResultSet(res))
+            ret.add(this.fromResultSet(res))
         }
         return ret
     }
@@ -59,7 +59,7 @@ class Snippet : Model {
         return db.delete(this.tableName(), "id", id.toString())
     }
 
-    override fun fromResultSet(rs: ResultSet): Model {
+    override fun fromResultSet(rs: ResultSet): Snippet {
         val id = rs.getInt("id")
         val ownerId = rs.getInt("owner_id")
         val isPublic = rs.getBoolean("is_public")
