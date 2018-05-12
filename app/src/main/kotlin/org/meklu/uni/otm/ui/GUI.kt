@@ -5,19 +5,28 @@ import javafx.stage.Stage
 import org.meklu.uni.otm.domain.Logic
 
 class GUI() : Application(), UserInterface {
+    private var _stage : Stage? = null
+    var stage : Stage? = null
+        set(x) {
+            x?.sizeToScene()
+            x?.show()
+            _stage?.hide()
+            _stage = x
+        }
     val logic : Logic
 
     val loginScreen : LoginScreen
+    val registerUser : RegisterUser
 
     init {
         this.logic = GUI.logic!!
 
-        this.loginScreen = LoginScreen(logic)
+        this.loginScreen = LoginScreen(this)
+        this.registerUser = RegisterUser(this)
     }
 
     override fun start(stage: Stage) {
-        stage.scene = this.loginScreen.scene
-        stage.show()
+        this.stage = this.loginScreen.stage
     }
 
     companion object {

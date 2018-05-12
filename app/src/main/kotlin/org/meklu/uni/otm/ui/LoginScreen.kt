@@ -5,23 +5,22 @@ import javafx.scene.layout.VBox
 import javafx.scene.control.TextField
 import javafx.scene.control.Label
 import javafx.scene.control.Button
-import org.meklu.uni.otm.domain.Logic
+import javafx.stage.Stage
 
 class LoginScreen {
-    val logic: Logic
-    val scene: Scene
-    val layout: VBox
-    val userLabel: Label
-    val userField: TextField
-    val loginButton: Button
+    val stage: Stage
 
-    constructor(logic: Logic) {
-        this.logic = logic
-        layout = VBox()
-        scene = Scene(layout, 380.0, 380.0)
-        userLabel = Label("User name")
-        userField = TextField()
-        loginButton = Button("Log in")
+    constructor(gui : GUI) {
+        val logic = gui.logic
+        val layout = VBox()
+        val scene = Scene(layout, 380.0, 380.0)
+        stage = Stage()
+        stage.scene = scene
+        stage.title = "Log in"
+        val userLabel = Label("User name")
+        val userField = TextField()
+        val loginButton = Button("Log in")
+        val registerButton = Button("No account? Register now!")
 
         loginButton.setOnAction({ _ -> if (logic.login(userField.text)) {
             println("Login successful for user " + userField.text)
@@ -29,6 +28,12 @@ class LoginScreen {
         } else {
             println("Login failed for user " + userField.text)
         }})
-        layout.children.addAll(userLabel, userField, loginButton)
+        userField.onAction = loginButton.onAction
+
+        registerButton.setOnAction({_ ->
+            gui.stage = gui.registerUser.stage
+        })
+
+        layout.children.addAll(userLabel, userField, loginButton, registerButton)
     }
 }

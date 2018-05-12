@@ -21,4 +21,8 @@ class Logic {
         }
         return false
     }
+
+    fun register(username : String) : Boolean {
+        return User(db, 0, username).save()
+    }
 }

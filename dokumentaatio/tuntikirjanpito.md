@@ -15,4 +15,5 @@ Pvm   | Aika  | Asia
 12.5. | 3h30m | Testien ja tietokannan kanssa tappelua
 12.5. | 1h    | Lisää testejä
 12.5. | 3h    | Käyttöliittymän ja logiikan sovittelua
-…     | 17h10m | *Yhteensä*
+12.5. | 1h    | Alustava kirjautuminen
+…     | 18h10m | *Yhteensä*
