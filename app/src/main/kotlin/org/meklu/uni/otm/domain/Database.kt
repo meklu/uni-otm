@@ -113,9 +113,10 @@ class Database {
      * @param fields The fields to check against in (field, operator, value) form, e.g. ("name", "LIKE", "%ant%")
      * @return Possibly a ResultSet
      */
-    fun findWhere(table : String, whereFields : List<Triple<String, String, String>>): ResultSet {
+    fun findWhere(table : String, whereFields : List<Triple<String, String, String>>, additionalOrders : List<String> = listOf()): ResultSet {
         val frepl = whereFields.joinToString(separator = " AND ", transform = {x -> "${x.first} ${x.second} ?"})
-        val query = "SELECT * FROM $table WHERE $frepl"
+        val addtl = additionalOrders.joinToString(separator = " ")
+        val query = "SELECT * FROM $table WHERE $frepl $addtl"
         val stmt = conn.prepareStatement(query)
         for (i in 1..whereFields.size) {
             val t = whereFields[i - 1]

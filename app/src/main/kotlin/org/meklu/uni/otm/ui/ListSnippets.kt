@@ -1,8 +1,9 @@
 package org.meklu.uni.otm.ui
 
-import javafx.collections.ObservableList
+import javafx.collections.FXCollections
 import javafx.scene.Scene
 import javafx.scene.control.*
+import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
 import org.meklu.uni.otm.model.Snippet
@@ -28,7 +29,16 @@ class ListSnippets {
 
         val logoutButton = Button("Log out")
 
+        val snippets = FXCollections.observableArrayList<Snippet>()
+        snippetCol.cellValueFactory = PropertyValueFactory("snippet")
+        tagsCol.cellValueFactory = PropertyValueFactory("snippet") // TODO!
+        table.items = snippets
+        stage.setOnShown({
+            snippets.addAll(logic.recentSnippets())
+        })
+
         logoutButton.setOnAction({_ ->
+            snippets.clear()
             logic.logout()
             gui.stage = gui.loginScreen.stage
         })

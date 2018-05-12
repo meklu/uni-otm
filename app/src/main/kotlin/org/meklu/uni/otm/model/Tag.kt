@@ -33,23 +33,23 @@ class Tag : Model<Tag> {
     }
 
     override fun find(field: String, value: String): Tag? {
-        val res = db.find(this.tableName(), field, value) ?: return null
+        val res = db.find(this.tableName(), field, value)
         if (!res.next()) return null
         return this.fromResultSet(res)
     }
 
     override fun findLike(field: String, pattern: String): List<Tag> {
         val ret = ArrayList<Tag>()
-        val res = db.findLike(this.tableName(), field, pattern) ?: return ret
+        val res = db.findLike(this.tableName(), field, pattern)
         while (res.next()) {
             ret.add(this.fromResultSet(res))
         }
         return ret
     }
 
-    override fun findWhere(fields: List<Triple<String, String, String>>): List<Tag> {
+    override fun findWhere(fields: List<Triple<String, String, String>>, additionalOrders : List<String>): List<Tag> {
         val ret = ArrayList<Tag>()
-        val res = db.findWhere(this.tableName(), fields)
+        val res = db.findWhere(this.tableName(), fields, additionalOrders)
         while (res.next()) {
             ret.add(this.fromResultSet(res))
         }

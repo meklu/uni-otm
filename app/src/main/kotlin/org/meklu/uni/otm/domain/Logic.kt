@@ -1,5 +1,6 @@
 package org.meklu.uni.otm.domain
 
+import org.meklu.uni.otm.model.Snippet
 import org.meklu.uni.otm.model.User
 import java.sql.SQLException
 
@@ -34,6 +35,18 @@ class Logic {
             User(db, 0, username).save()
         } catch (e : SQLException) {
             false
+        }
+    }
+
+    fun recentSnippets() : List<Snippet> {
+        return try {
+            Snippet(db, 0, 0, false, "").findWhere(listOf(
+                Triple("owner_id", "=", user!!.id.toString())
+            ),listOf(
+                "ORDER BY created DESC"
+            ))
+        } catch (e : SQLException) {
+            listOf()
         }
     }
 }

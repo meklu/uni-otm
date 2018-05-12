@@ -18,4 +18,5 @@ Pvm   | Aika  | Asia
 12.5. | 1h    | Alustava kirjautuminen
 12.5. | 30m   | Käyttöliittymän siistimistä
 12.5. | 30m   | Koodinpätkänäkymän mockup
-…     | 19h10m | *Yhteensä*
+12.5. | 30m   | Koodinpätkänäkymän työstämistä
+…     | 19h40m | *Yhteensä*

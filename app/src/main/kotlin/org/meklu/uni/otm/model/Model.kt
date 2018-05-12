@@ -19,7 +19,8 @@ interface Model<T : Model<T>> {
     ) : List<T>
     /** Fetches a Model by a list of (field, operator, value) */
     fun findWhere(
-        fields: List<Triple<String, String, String>>
+        fields: List<Triple<String, String, String>>,
+        additionalOrders : List<String> = listOf()
     ): List<T>
     /** Deletes a Model from the database */
     fun delete() : Boolean
