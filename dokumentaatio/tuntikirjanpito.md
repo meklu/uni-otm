@@ -13,4 +13,5 @@ Pvm   | Aika  | Asia
 11.5. | 3h    | Paljon tietokantatoiminnallisuutta
 11.5. | 30m   | Dokumentaatioasiaa
 12.5. | 3h30m | Testien ja tietokannan kanssa tappelua
-…     | 13h10m | *Yhteensä*
+12.5. | 1h    | Lisää testejä
+…     | 14h10m | *Yhteensä*

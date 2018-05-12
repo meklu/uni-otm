@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS snippets (
 	is_public INTEGER NOT NULL DEFAULT 0,
 	created TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	snippet TEXT,
-	FOREIGN KEY (owner_id) REFERENCES users(id)
+	FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- For future developments:
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS tags_snippets (
 	tag_id INTEGER,
 	snippet_id INTEGER,
 	tagger_id INTEGER,
-	FOREIGN KEY (tag_id) REFERENCES tags(id),
-	FOREIGN KEY (snippet_id) REFERENCES snippets(id),
-	FOREIGN KEY (tagger_id) REFERENCES users(id)
+	FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+	FOREIGN KEY (snippet_id) REFERENCES snippets(id) ON DELETE CASCADE,
+	FOREIGN KEY (tagger_id) REFERENCES users(id) ON DELETE CASCADE
 );

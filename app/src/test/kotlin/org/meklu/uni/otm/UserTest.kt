@@ -9,11 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
 class UserTest {
-    private val db : Database
-
-    constructor() {
-        db = Database("test.db")
-    }
+    private val db : Database = Database("test.db")
 
     @Before
     fun `reset database`() {
