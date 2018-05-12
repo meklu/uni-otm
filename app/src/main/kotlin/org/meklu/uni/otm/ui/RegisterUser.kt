@@ -1,6 +1,7 @@
 package org.meklu.uni.otm.ui
 
 import javafx.scene.Scene
+import javafx.scene.control.Alert
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
@@ -33,7 +34,12 @@ class RegisterUser {
             println("Registering successful for user " + userField.text)
             backAction()
         } else {
-            println("Registering failed for user " + userField.text)
+            val a = Alert(Alert.AlertType.ERROR)
+            a.initOwner(stage)
+            a.title = "Error!"
+            a.headerText = "Error while registering!"
+            a.contentText = "Registering failed for user ${userField.text}."
+            a.showAndWait()
         }})
         userField.onAction = registerButton.onAction
 

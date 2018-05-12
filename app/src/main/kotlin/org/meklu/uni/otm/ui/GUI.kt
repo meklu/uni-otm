@@ -10,6 +10,8 @@ class GUI() : Application(), UserInterface {
         set(x) {
             x?.sizeToScene()
             x?.show()
+            x?.minWidth = x!!.width
+            x?.minHeight = x!!.height
             _stage?.hide()
             _stage = x
         }

@@ -16,4 +16,5 @@ Pvm   | Aika  | Asia
 12.5. | 1h    | Lisää testejä
 12.5. | 3h    | Käyttöliittymän ja logiikan sovittelua
 12.5. | 1h    | Alustava kirjautuminen
-…     | 18h10m | *Yhteensä*
+12.5. | 30m   | Käyttöliittymän siistimistä
+…     | 18h40m | *Yhteensä*

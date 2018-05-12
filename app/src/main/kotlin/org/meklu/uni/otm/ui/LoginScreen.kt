@@ -1,6 +1,7 @@
 package org.meklu.uni.otm.ui
 
 import javafx.scene.Scene
+import javafx.scene.control.Alert
 import javafx.scene.layout.VBox
 import javafx.scene.control.TextField
 import javafx.scene.control.Label
@@ -26,7 +27,12 @@ class LoginScreen {
             println("Login successful for user " + userField.text)
             userField.clear()
         } else {
-            println("Login failed for user " + userField.text)
+            val a = Alert(Alert.AlertType.ERROR)
+            a.initOwner(stage)
+            a.title = "Error!"
+            a.headerText = "Error while logging in!"
+            a.contentText = "Login failed for user ${userField.text}."
+            a.showAndWait()
         }})
         userField.onAction = loginButton.onAction
 
