@@ -85,29 +85,42 @@ class Database {
         this.createTables()
     }
 
-    /** Finds a row where field = value
+    /** Finds rows where field = value
      *
      * @param table The table to query
      * @param field The field to check against
      * @param value The value to compare the field to
      * @return Possibly a ResultSet
      */
-    fun find(table : String, field : String, value : String): ResultSet? {
-        val stmt = conn.prepareStatement("SELECT * FROM ${table} WHERE ${field} = ?")
-        stmt.setString(1, value)
-        return stmt.executeQuery()
+    fun find(table : String, field : String, value : String): ResultSet {
+        return findWhere(table, listOf(Triple(field, "LIKE", value)))
     }
 
-    /** Finds a row where field matches the given SQL pattern
+    /** Finds rows where field matches the given SQL pattern
      *
      * @param table The table to query
      * @param field The field to check against
      * @param pattern The value to compare the field to
      * @return Possibly a ResultSet
      */
-    fun findLike(table : String, field : String, pattern : String): ResultSet? {
-        val stmt = conn.prepareStatement("SELECT * FROM ${table} WHERE ${field} LIKE ?")
-        stmt.setString(1, pattern)
+    fun findLike(table : String, field : String, pattern : String): ResultSet {
+        return findWhere(table, listOf(Triple(field, "LIKE", pattern)))
+    }
+
+    /** Finds rows where the given fields match the given values according to the provided operator
+     *
+     * @param table The table to query
+     * @param fields The fields to check against in (field, operator, value) form, e.g. ("name", "LIKE", "%ant%")
+     * @return Possibly a ResultSet
+     */
+    fun findWhere(table : String, whereFields : List<Triple<String, String, String>>): ResultSet {
+        val frepl = whereFields.joinToString(separator = " AND ", transform = {x -> "${x.first} ${x.second} ?"})
+        val query = "SELECT * FROM $table WHERE $frepl"
+        val stmt = conn.prepareStatement(query)
+        for (i in 1..whereFields.size) {
+            val t = whereFields[i - 1]
+            stmt.setString(i, t.third)
+        }
         return stmt.executeQuery()
     }
 

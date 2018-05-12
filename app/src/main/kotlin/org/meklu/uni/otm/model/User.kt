@@ -47,6 +47,15 @@ class User : Model<User> {
         return ret
     }
 
+    override fun findWhere(fields: List<Triple<String, String, String>>): List<User> {
+        val ret = ArrayList<User>()
+        val res = db.findWhere(this.tableName(), fields)
+        while (res.next()) {
+            ret.add(this.fromResultSet(res))
+        }
+        return ret
+    }
+
     override fun delete(): Boolean {
         return db.delete(this.tableName(), "id", id.toString())
     }

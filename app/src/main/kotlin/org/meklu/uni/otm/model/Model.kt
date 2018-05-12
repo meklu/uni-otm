@@ -17,6 +17,10 @@ interface Model<T : Model<T>> {
         field : String,
         pattern : String
     ) : List<T>
+    /** Fetches a Model by a list of (field, operator, value) */
+    fun findWhere(
+        fields: List<Triple<String, String, String>>
+    ): List<T>
     /** Deletes a Model from the database */
     fun delete() : Boolean
     /** Returns a Model based on a DB result */

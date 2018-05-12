@@ -24,7 +24,7 @@ class LoginScreen {
         val registerButton = Button("No account? Register now!")
 
         loginButton.setOnAction({ _ -> if (logic.login(userField.text)) {
-            println("Login successful for user " + userField.text)
+            gui.stage = gui.listSnippets.stage
             userField.clear()
         } else {
             val a = Alert(Alert.AlertType.ERROR)

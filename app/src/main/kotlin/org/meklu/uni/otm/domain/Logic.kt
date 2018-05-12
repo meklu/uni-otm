@@ -27,6 +27,8 @@ class Logic {
         }
     }
 
+    fun logout() { user = null }
+
     fun register(username : String) : Boolean {
         return try {
             User(db, 0, username).save()

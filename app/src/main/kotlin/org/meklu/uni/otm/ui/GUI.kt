@@ -19,12 +19,14 @@ class GUI() : Application(), UserInterface {
 
     val loginScreen : LoginScreen
     val registerUser : RegisterUser
+    val listSnippets : ListSnippets
 
     init {
         this.logic = GUI.logic!!
 
         this.loginScreen = LoginScreen(this)
         this.registerUser = RegisterUser(this)
+        this.listSnippets = ListSnippets(this)
     }
 
     override fun start(stage: Stage) {
