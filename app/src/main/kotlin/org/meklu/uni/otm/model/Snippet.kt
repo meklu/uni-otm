@@ -28,8 +28,8 @@ class Snippet : Model<Snippet> {
 
     override fun save(): Boolean {
         val fields = ArrayList<Pair<String, String>>()
-        fields.add(Pair("ownerId", ownerId.toString()))
-        fields.add(Pair("isPublic", ({if (isPublic) 1 else 0}) .toString()))
+        fields.add(Pair("owner_id", ownerId.toString()))
+        fields.add(Pair("is_public", ({if (isPublic) 1 else 0}).toString()))
         fields.add(Pair("snippet", snippet))
         if (this.id > 0) {
             fields.add(Pair("id", id.toString()))
